@@ -15,7 +15,6 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="./seller/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="./seller/images/favicon.png" />
 </head>
 
 <body>
@@ -30,15 +29,26 @@
               </div>
               <h4>Hello! let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3">
+              <?php if(isset($_GET['error'])) { ?> 
+              <div class="alert alert-danger text_align_center" role="alert">
+                  <?php echo $_GET['error'];?>
+              </div>       
+                
+            <?php } ?>
+            <?php if(isset($_GET['success'])) { ?>       
+              <div class="alert alert-primary text_align_center" role="alert">
+                  <?php echo $_GET['success'];?>
+                </div>           
+            <?php } ?>
+              <form class="pt-3" action="includes/login-check.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input type="email" class="form-control form-control-lg" name="email" placeholder="Username">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" name="password" placeholder="Password">
                 </div>
-                <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="./seller/index.html">SIGN IN</a>
+                <div class="mt-3" >
+                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>                  
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
@@ -50,7 +60,7 @@
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                  Don't have an account? <a href="register.php" class="text-primary">Create</a>
                 </div>
               </form>
             </div>

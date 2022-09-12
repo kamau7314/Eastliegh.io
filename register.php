@@ -16,7 +16,6 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="./seller/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="./seller/images/favicon.png" />
 </head>
 
 <body>
@@ -31,7 +30,18 @@
               </div>
               <h4>New here?</h4>
               <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-              <form class="pt-3">
+              <?php if(isset($_GET['error'])) { ?> 
+              <div class="alert alert-danger text_align_center" role="alert">
+                  <?php echo $_GET['error'];?>
+              </div>               
+                
+            <?php } ?>
+            <?php if(isset($_GET['success'])) { ?>       
+              <div class="alert alert-primary text_align_center" role="alert">
+                  <?php echo $_GET['success'];?>
+                </div>           
+            <?php } ?>
+              <form class="pt-3" action="includes/sign-up-check.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username">
                 </div>
@@ -60,10 +70,10 @@
                   </div>
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="./seller/index.html">SIGN UP</a>
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a href="login.html" class="text-primary">Login</a>
+                  Already have an account? <a href="login.php" class="text-primary">Login</a>
                 </div>
               </form>
             </div>
